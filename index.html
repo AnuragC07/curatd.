@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Productivity Content</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Crimson Text", serif;
+        background: linear-gradient(135deg, #f5f0e8 0%, #e8ddd4 100%);
+        min-height: 100vh;
+        color: #3c2415;
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .title {
+        font-family: "Dancing Script", cursive;
+        font-size: 3.5rem;
+        font-weight: 700;
+        color: #5d4037;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .subtitle {
+        font-size: 1.2rem;
+        color: #6d4c41;
+        font-style: italic;
+        margin-bottom: 2rem;
+      }
+
+      .fetch-btn {
+        background: linear-gradient(45deg, #5d4037, #8d6e63);
+        color: #f5f0e8;
+        border: none;
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+        font-family: "Crimson Text", serif;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(93, 64, 55, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .fetch-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(93, 64, 55, 0.4);
+      }
+
+      .fetch-btn:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
+
+      .spinner {
+        display: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #f5f0e8;
+        border-top: 2px solid transparent;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-right: 0.5rem;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .content-grid {
+        display: none;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .content-section {
+        background: rgba(255, 255, 255, 0.6);
+        padding: 2rem;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 32px rgba(93, 64, 55, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .section-title {
+        font-family: "Dancing Script", cursive;
+        font-size: 2rem;
+        font-weight: 600;
+        color: #5d4037;
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
+
+      .content-item {
+        background: rgba(245, 240, 232, 0.8);
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        border-radius: 15px;
+        border-left: 4px solid #8d6e63;
+        transition: transform 0.2s ease;
+      }
+
+      .content-item:hover {
+        transform: translateX(5px);
+      }
+
+      .content-item:last-child {
+        margin-bottom: 0;
+      }
+
+      .item-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #3c2415;
+        margin-bottom: 0.5rem;
+        text-decoration: none;
+      }
+
+      .item-title:hover {
+        color: #5d4037;
+      }
+
+      .item-creator {
+        font-size: 0.9rem;
+        color: #6d4c41;
+        font-style: italic;
+        margin-bottom: 0.5rem;
+      }
+
+      .item-link {
+        color: #8d6e63;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.2s ease;
+      }
+
+      .item-link:hover {
+        color: #5d4037;
+        text-decoration: underline;
+      }
+
+      .loading-text {
+        text-align: center;
+        font-style: italic;
+        color: #6d4c41;
+        margin-top: 2rem;
+        display: none;
+      }
+
+      .error-message {
+        background: rgba(211, 47, 47, 0.1);
+        color: #c62828;
+        padding: 1rem;
+        border-radius: 10px;
+        text-align: center;
+        margin-top: 2rem;
+        display: none;
+      }
+
+      @media (max-width: 768px) {
+        .content-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .title {
+          font-size: 2.5rem;
+        }
+
+        .container {
+          padding: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1 class="title">Daily Productivity Curator</h1>
+        <p class="subtitle">
+          Handpicked articles & videos to elevate your productivity journey
+        </p>
+        <button class="fetch-btn" onclick="fetchContent()">
+          <span class="spinner"></span>
+          <span class="btn-text">Fetch Daily Recommendations</span>
+        </button>
+      </div>
+
+      <div class="loading-text">Curating your personalized content...</div>
+
+      <div class="error-message">
+        Unable to fetch content. Please try again later.
+      </div>
+
+      <div class="content-grid">
+        <div class="content-section">
+          <h2 class="section-title">📖 Articles</h2>
+          <div id="articles-container"></div>
+        </div>
+
+        <div class="content-section">
+          <h2 class="section-title">🎥 Videos</h2>
+          <div id="videos-container"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      async function fetchContent() {
+        const btn = document.querySelector(".fetch-btn");
+        const spinner = document.querySelector(".spinner");
+        const btnText = document.querySelector(".btn-text");
+        const contentGrid = document.querySelector(".content-grid");
+        const loadingText = document.querySelector(".loading-text");
+        const errorMessage = document.querySelector(".error-message");
+
+        // Show loading state
+        btn.disabled = true;
+        spinner.style.display = "inline-block";
+        btnText.textContent = "Curating Content...";
+        loadingText.style.display = "block";
+        contentGrid.style.display = "none";
+        errorMessage.style.display = "none";
+
+        try {
+          const response = await fetch("http://127.0.0.1:5000/api/content");
+
+          if (!response.ok) {
+            throw new Error("Failed to fetch content");
+          }
+
+          const data = await response.json();
+          displayContent(data);
+          contentGrid.style.display = "grid";
+        } catch (error) {
+          console.error("Error:", error);
+          errorMessage.style.display = "block";
+        } finally {
+          // Reset button state
+          btn.disabled = false;
+          spinner.style.display = "none";
+          btnText.textContent = "Fetch Daily Recommendations";
+          loadingText.style.display = "none";
+        }
+      }
+
+      function displayContent(data) {
+        const articlesContainer = document.getElementById("articles-container");
+        const videosContainer = document.getElementById("videos-container");
+
+        // Clear previous content
+        articlesContainer.innerHTML = "";
+        videosContainer.innerHTML = "";
+
+        // Display articles
+        if (data.articles && data.articles.length > 0) {
+          data.articles.forEach((article) => {
+            const articleElement = createContentItem(
+              article.title,
+              article.source || "Unknown Source",
+              article.url
+            );
+            articlesContainer.appendChild(articleElement);
+          });
+        } else {
+          articlesContainer.innerHTML =
+            '<p style="text-align: center; color: #6d4c41; font-style: italic;">No articles found today</p>';
+        }
+
+        // Display videos
+        if (data.videos && data.videos.length > 0) {
+          data.videos.forEach((video) => {
+            const videoElement = createContentItem(
+              video.title,
+              video.channel || "Unknown Channel",
+              video.url
+            );
+            videosContainer.appendChild(videoElement);
+          });
+        } else {
+          videosContainer.innerHTML =
+            '<p style="text-align: center; color: #6d4c41; font-style: italic;">No videos found today</p>';
+        }
+      }
+
+      function createContentItem(title, creator, url) {
+        const item = document.createElement("div");
+        item.className = "content-item";
+
+        item.innerHTML = `
+                <a href="${url}" target="_blank" class="item-title">${title}</a>
+                <div class="item-creator">by ${creator}</div>
+                <a href="${url}" target="_blank" class="item-link">Read More →</a>
+            `;
+
+        return item;
+      }
+
+      // Demo data for testing (remove when backend is ready)
+      function loadDemoData() {
+        const demoData = {
+          articles: [
+            {
+              title: "7 Habits to Stay Focused in a World Full of Distractions",
+              source: "Harvard Business Review",
+              url: "https://hbr.org/2025/02/7-habits-to-stay-focused-in-a-world-full-of-distractions",
+            },
+            {
+              title: "Don't Let Bad Time Management Undermine Your Leadership",
+              source: "Harvard Business Review",
+              url: "https://hbr.org/2025/02/dont-let-bad-time-management-undermine-your-leadership",
+            },
+          ],
+          videos: [
+            {
+              title: "I put 27 habits to the ultimate test",
+              channel: "Matt D'Avella",
+              url: "https://www.youtube.com/watch?v=3siRFvX_-Pg",
+            },
+            {
+              title: "The Easiest Way to Double Your Productivity",
+              channel: "Thomas Frank",
+              url: "https://www.youtube.com/watch?v=c92hhEFCcGw",
+            },
+          ],
+        };
+
+        setTimeout(() => {
+          displayContent(demoData);
+          document.querySelector(".content-grid").style.display = "grid";
+          document.querySelector(".fetch-btn").disabled = false;
+          document.querySelector(".spinner").style.display = "none";
+          document.querySelector(".btn-text").textContent =
+            "Fetch Daily Recommendations";
+          document.querySelector(".loading-text").style.display = "none";
+        }, 2000);
+      }
+
+      // Uncomment this line to test with demo data
+      // Replace fetchContent function call with loadDemoData() for testing
+    </script>
+  </body>
+</html>
