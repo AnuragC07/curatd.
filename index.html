@@ -251,7 +251,9 @@
         errorMessage.style.display = "none";
 
         try {
-          const response = await fetch("http://127.0.0.1:5000/api/content");
+          const response = await fetch(
+            "https://curatd.onrender.com/api/content"
+          );
 
           if (!response.ok) {
             throw new Error("Failed to fetch content");
