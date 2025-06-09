@@ -4,8 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Daily Productivity Content</title>
+    <!-- <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    /> -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -16,10 +20,11 @@
       }
 
       body {
-        font-family: "Inter", sans-serif;
-        background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        /* font-family: "Crimson Text", serif; */
+        font-family: "Libre Baskerville", serif;
+        background: linear-gradient(135deg, #f5f0e8 0%, #e8ddd4 100%);
         min-height: 100vh;
-        color: #e5e5e5;
+        color: #3c2415;
         line-height: 1.6;
       }
 
@@ -35,74 +40,55 @@
       }
 
       .title {
+        font-family: "Dancing Script", cursive;
         font-size: 3.5rem;
         font-weight: 700;
-        background: linear-gradient(
-          135deg,
-          #ff6b9d 0%,
-          #c44cff 50%,
-          #8b5cf6 100%
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        color: #5d4037;
         margin-bottom: 1rem;
-        letter-spacing: -0.02em;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
       }
 
       .subtitle {
         font-size: 1.2rem;
-        color: #a1a1aa;
-        font-weight: 300;
+        color: #6d4c41;
+        font-style: italic;
         margin-bottom: 2rem;
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
       }
 
       .fetch-btn {
-        background: linear-gradient(
-          135deg,
-          #ff6b9d 0%,
-          #c44cff 50%,
-          #8b5cf6 100%
-        );
-        color: #ffffff;
+        background: linear-gradient(45deg, #5d4037, #8d6e63);
+        color: #f5f0e8;
         border: none;
         padding: 1rem 2rem;
         font-size: 1.1rem;
-        font-family: "Inter", sans-serif;
-        font-weight: 500;
-        border-radius: 12px;
+        font-family: "Crimson Text", serif;
+        border-radius: 50px;
         cursor: pointer;
         transition: all 0.3s ease;
-        box-shadow: 0 4px 20px rgba(255, 107, 157, 0.3);
+        box-shadow: 0 4px 15px rgba(93, 64, 55, 0.3);
         position: relative;
         overflow: hidden;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
       }
 
       .fetch-btn:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 30px rgba(255, 107, 157, 0.4);
+        box-shadow: 0 6px 20px rgba(93, 64, 55, 0.4);
       }
 
       .fetch-btn:disabled {
         opacity: 0.7;
         cursor: not-allowed;
-        transform: none;
       }
 
       .spinner {
         display: none;
         width: 20px;
         height: 20px;
-        border: 2px solid rgba(255, 255, 255, 0.3);
-        border-top: 2px solid #ffffff;
+        border: 2px solid #f5f0e8;
+        border-top: 2px solid transparent;
         border-radius: 50%;
         animation: spin 1s linear infinite;
+        margin-right: 0.5rem;
       }
 
       @keyframes spin {
@@ -122,56 +108,34 @@
       }
 
       .content-section {
-        background: rgba(255, 255, 255, 0.05);
+        background: rgba(255, 255, 255, 0.6);
         padding: 2rem;
-        border-radius: 16px;
+        border-radius: 20px;
         backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        transition: all 0.3s ease;
-      }
-
-      .content-section:hover {
-        background: rgba(255, 255, 255, 0.08);
-        border-color: rgba(255, 107, 157, 0.3);
+        box-shadow: 0 8px 32px rgba(93, 64, 55, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
       }
 
       .section-title {
-        font-size: 1.5rem;
+        font-family: "Dancing Script", cursive;
+        font-size: 2rem;
         font-weight: 600;
-        background: linear-gradient(135deg, #ff6b9d 0%, #c44cff 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        color: #5d4037;
         margin-bottom: 1.5rem;
         text-align: center;
       }
 
       .content-item {
-        background: rgba(255, 255, 255, 0.03);
+        background: rgba(245, 240, 232, 0.8);
         padding: 1.5rem;
         margin-bottom: 1rem;
-        border-radius: 12px;
-        border-left: 3px solid transparent;
-        border-image: linear-gradient(135deg, #ff6b9d, #c44cff) 1;
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .content-item::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 3px;
-        height: 100%;
-        background: linear-gradient(135deg, #ff6b9d 0%, #c44cff 100%);
+        border-radius: 15px;
+        border-left: 4px solid #8d6e63;
+        transition: transform 0.2s ease;
       }
 
       .content-item:hover {
         transform: translateX(5px);
-        background: rgba(255, 255, 255, 0.08);
-        box-shadow: 0 4px 20px rgba(255, 107, 157, 0.1);
       }
 
       .content-item:last-child {
@@ -180,92 +144,51 @@
 
       .item-title {
         font-size: 1.1rem;
-        font-weight: 500;
-        color: #f4f4f5;
+        font-weight: 600;
+        color: #3c2415;
         margin-bottom: 0.5rem;
         text-decoration: none;
-        display: block;
-        transition: color 0.2s ease;
       }
 
       .item-title:hover {
-        color: #ff6b9d;
+        color: #5d4037;
       }
 
       .item-creator {
         font-size: 0.9rem;
-        color: #a1a1aa;
-        font-weight: 300;
+        color: #6d4c41;
+        font-style: italic;
         margin-bottom: 0.5rem;
       }
 
       .item-link {
-        color: #c44cff;
+        color: #8d6e63;
         text-decoration: none;
         font-size: 0.9rem;
-        font-weight: 500;
-        transition: all 0.2s ease;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.25rem;
+        transition: color 0.2s ease;
       }
 
       .item-link:hover {
-        color: #ff6b9d;
-        text-decoration: none;
+        color: #5d4037;
+        text-decoration: underline;
       }
 
       .loading-text {
         text-align: center;
-        font-weight: 300;
-        color: #a1a1aa;
+        font-style: italic;
+        color: #6d4c41;
         margin-top: 2rem;
         display: none;
       }
 
       .error-message {
-        background: rgba(239, 68, 68, 0.1);
-        color: #fca5a5;
+        background: rgba(211, 47, 47, 0.1);
+        color: #c62828;
         padding: 1rem;
-        border-radius: 12px;
+        border-radius: 10px;
         text-align: center;
         margin-top: 2rem;
         display: none;
-        border: 1px solid rgba(239, 68, 68, 0.2);
-      }
-
-      .retry-btn {
-        background: rgba(255, 107, 157, 0.2);
-        color: #ff6b9d;
-        border: 1px solid #ff6b9d;
-        padding: 0.5rem 1rem;
-        border-radius: 8px;
-        cursor: pointer;
-        margin-top: 1rem;
-        font-family: inherit;
-        transition: all 0.2s ease;
-      }
-
-      .retry-btn:hover {
-        background: rgba(255, 107, 157, 0.3);
-      }
-
-      /* Scrollbar styling */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-
-      ::-webkit-scrollbar-track {
-        background: #1a1a1a;
-      }
-
-      ::-webkit-scrollbar-thumb {
-        background: linear-gradient(135deg, #ff6b9d, #c44cff);
-        border-radius: 4px;
-      }
-
-      ::-webkit-scrollbar-thumb:hover {
-        background: linear-gradient(135deg, #c44cff, #8b5cf6);
       }
 
       @media (max-width: 768px) {
@@ -280,39 +203,6 @@
         .container {
           padding: 1rem;
         }
-
-        .content-section {
-          padding: 1.5rem;
-        }
-      }
-
-      /* Subtle animations */
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .content-item {
-        animation: fadeIn 0.5s ease forwards;
-      }
-
-      .content-item:nth-child(1) {
-        animation-delay: 0.1s;
-      }
-      .content-item:nth-child(2) {
-        animation-delay: 0.2s;
-      }
-      .content-item:nth-child(3) {
-        animation-delay: 0.3s;
-      }
-      .content-item:nth-child(4) {
-        animation-delay: 0.4s;
       }
     </style>
   </head>
@@ -332,13 +222,7 @@
       <div class="loading-text">Curating your personalized content...</div>
 
       <div class="error-message">
-        <div>Unable to fetch content from the server.</div>
-        <div style="font-size: 0.9rem; margin-top: 0.5rem; opacity: 0.8">
-          The API might be sleeping or unavailable. Try the demo content below.
-        </div>
-        <button class="retry-btn" onclick="loadDemoContent()">
-          Load Demo Content
-        </button>
+        Ran into some problem. Please try again later.
       </div>
 
       <div class="content-grid">
@@ -355,54 +239,6 @@
     </div>
 
     <script>
-      // Mock data for demo purposes
-      const demoData = {
-        articles: [
-          {
-            title: "The Science of Productive Procrastination",
-            source: "Harvard Business Review",
-            url: "https://hbr.org/2016/01/the-case-for-procrastination",
-          },
-          {
-            title: "How to Build Better Habits in 2025",
-            source: "Medium",
-            url: "https://medium.com/@habits/building-better-habits",
-          },
-          {
-            title: "The Psychology of Deep Work",
-            source: "Cal Newport",
-            url: "https://calnewport.com/deep-work/",
-          },
-          {
-            title: "Minimalism and Mental Clarity",
-            source: "The Minimalists",
-            url: "https://theminimalists.com",
-          },
-        ],
-        videos: [
-          {
-            title: "Time Management That Actually Works",
-            channel: "Ali Abdaal",
-            url: "https://youtube.com/watch?v=example1",
-          },
-          {
-            title: "Building a Second Brain",
-            channel: "Tiago Forte",
-            url: "https://youtube.com/watch?v=example2",
-          },
-          {
-            title: "The Art of Focused Attention",
-            channel: "Andrew Huberman",
-            url: "https://youtube.com/watch?v=example3",
-          },
-          {
-            title: "Productivity vs. Busy Work",
-            channel: "Thomas Frank",
-            url: "https://youtube.com/watch?v=example4",
-          },
-        ],
-      };
-
       async function fetchContent() {
         const btn = document.querySelector(".fetch-btn");
         const spinner = document.querySelector(".spinner");
@@ -420,25 +256,12 @@
         errorMessage.style.display = "none";
 
         try {
-          // Try the original API first with a timeout
-          const controller = new AbortController();
-          const timeoutId = setTimeout(() => controller.abort(), 100000); // 10 second timeout
-
           const response = await fetch(
-            "https://curatd.onrender.com/api/content",
-            {
-              signal: controller.signal,
-              headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-              },
-            }
+            "https://curatd.onrender.com/api/content"
           );
 
-          clearTimeout(timeoutId);
-
           if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            throw new Error("Failed to fetch content");
           }
 
           const data = await response.json();
@@ -446,19 +269,6 @@
           contentGrid.style.display = "grid";
         } catch (error) {
           console.error("Error:", error);
-
-          if (error.name === "AbortError") {
-            errorMessage.querySelector("div").textContent =
-              "Request timed out. The server might be sleeping.";
-          } else if (error.message.includes("Failed to fetch")) {
-            errorMessage.querySelector("div").textContent =
-              "Unable to connect to the server. Check your internet connection.";
-          } else {
-            errorMessage.querySelector(
-              "div"
-            ).textContent = `Error: ${error.message}`;
-          }
-
           errorMessage.style.display = "block";
         } finally {
           // Reset button state
@@ -467,15 +277,6 @@
           btnText.textContent = "Fetch Daily Recommendations";
           loadingText.style.display = "none";
         }
-      }
-
-      function loadDemoContent() {
-        const errorMessage = document.querySelector(".error-message");
-        const contentGrid = document.querySelector(".content-grid");
-
-        errorMessage.style.display = "none";
-        displayContent(demoData);
-        contentGrid.style.display = "grid";
       }
 
       function displayContent(data) {
@@ -488,34 +289,32 @@
 
         // Display articles
         if (data.articles && data.articles.length > 0) {
-          data.articles.forEach((article, index) => {
+          data.articles.forEach((article) => {
             const articleElement = createContentItem(
               article.title,
               article.source || "Unknown Source",
               article.url
             );
-            articleElement.style.animationDelay = `${index * 0.1}s`;
             articlesContainer.appendChild(articleElement);
           });
         } else {
           articlesContainer.innerHTML =
-            '<p style="text-align: center; color: #a1a1aa; font-weight: 300;">No articles found today</p>';
+            '<p style="text-align: center; color: #6d4c41; font-style: italic;">No articles found today</p>';
         }
 
         // Display videos
         if (data.videos && data.videos.length > 0) {
-          data.videos.forEach((video, index) => {
+          data.videos.forEach((video) => {
             const videoElement = createContentItem(
               video.title,
               video.channel || "Unknown Channel",
               video.url
             );
-            videoElement.style.animationDelay = `${index * 0.1}s`;
             videosContainer.appendChild(videoElement);
           });
         } else {
           videosContainer.innerHTML =
-            '<p style="text-align: center; color: #a1a1aa; font-weight: 300;">No videos found today</p>';
+            '<p style="text-align: center; color: #6d4c41; font-style: italic;">No videos found today</p>';
         }
       }
 
@@ -531,6 +330,49 @@
 
         return item;
       }
+
+      // Demo data for testing (remove when backend is ready)
+      // function loadDemoData() {
+      //   const demoData = {
+      //     articles: [
+      //       {
+      //         title: "7 Habits to Stay Focused in a World Full of Distractions",
+      //         source: "Harvard Business Review",
+      //         url: "https://hbr.org/2025/02/7-habits-to-stay-focused-in-a-world-full-of-distractions",
+      //       },
+      //       {
+      //         title: "Don't Let Bad Time Management Undermine Your Leadership",
+      //         source: "Harvard Business Review",
+      //         url: "https://hbr.org/2025/02/dont-let-bad-time-management-undermine-your-leadership",
+      //       },
+      //     ],
+      //     videos: [
+      //       {
+      //         title: "I put 27 habits to the ultimate test",
+      //         channel: "Matt D'Avella",
+      //         url: "https://www.youtube.com/watch?v=3siRFvX_-Pg",
+      //       },
+      //       {
+      //         title: "The Easiest Way to Double Your Productivity",
+      //         channel: "Thomas Frank",
+      //         url: "https://www.youtube.com/watch?v=c92hhEFCcGw",
+      //       },
+      //     ],
+      //   };
+
+      //   setTimeout(() => {
+      //     displayContent(demoData);
+      //     document.querySelector(".content-grid").style.display = "grid";
+      //     document.querySelector(".fetch-btn").disabled = false;
+      //     document.querySelector(".spinner").style.display = "none";
+      //     document.querySelector(".btn-text").textContent =
+      //       "Fetch Daily Recommendations";
+      //     document.querySelector(".loading-text").style.display = "none";
+      //   }, 2000);
+      // }
+
+      // Uncomment this line to test with demo data
+      // Replace fetchContent function call with loadDemoData() for testing
     </script>
   </body>
 </html>
