@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Daily Productivity Content</title>
-    <link
+    <!-- <link
       href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap"
       rel="stylesheet"
-    />
+    /> -->
     <link
       href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
       rel="stylesheet"
@@ -211,7 +211,7 @@
       <div class="header">
         <h1 class="title">curatd.</h1>
         <p class="subtitle">
-          Handpicked articles & videos to elevate your productivity journey
+          Daily curated content for you to save you from doomscrolling
         </p>
         <button class="fetch-btn" onclick="fetchContent()">
           <span class="spinner"></span>
@@ -222,7 +222,7 @@
       <div class="loading-text">Curating your personalized content...</div>
 
       <div class="error-message">
-        Unable to fetch content. Please try again later.
+        Ran into some problem. Please try again later.
       </div>
 
       <div class="content-grid">
@@ -332,44 +332,44 @@
       }
 
       // Demo data for testing (remove when backend is ready)
-      function loadDemoData() {
-        const demoData = {
-          articles: [
-            {
-              title: "7 Habits to Stay Focused in a World Full of Distractions",
-              source: "Harvard Business Review",
-              url: "https://hbr.org/2025/02/7-habits-to-stay-focused-in-a-world-full-of-distractions",
-            },
-            {
-              title: "Don't Let Bad Time Management Undermine Your Leadership",
-              source: "Harvard Business Review",
-              url: "https://hbr.org/2025/02/dont-let-bad-time-management-undermine-your-leadership",
-            },
-          ],
-          videos: [
-            {
-              title: "I put 27 habits to the ultimate test",
-              channel: "Matt D'Avella",
-              url: "https://www.youtube.com/watch?v=3siRFvX_-Pg",
-            },
-            {
-              title: "The Easiest Way to Double Your Productivity",
-              channel: "Thomas Frank",
-              url: "https://www.youtube.com/watch?v=c92hhEFCcGw",
-            },
-          ],
-        };
+      // function loadDemoData() {
+      //   const demoData = {
+      //     articles: [
+      //       {
+      //         title: "7 Habits to Stay Focused in a World Full of Distractions",
+      //         source: "Harvard Business Review",
+      //         url: "https://hbr.org/2025/02/7-habits-to-stay-focused-in-a-world-full-of-distractions",
+      //       },
+      //       {
+      //         title: "Don't Let Bad Time Management Undermine Your Leadership",
+      //         source: "Harvard Business Review",
+      //         url: "https://hbr.org/2025/02/dont-let-bad-time-management-undermine-your-leadership",
+      //       },
+      //     ],
+      //     videos: [
+      //       {
+      //         title: "I put 27 habits to the ultimate test",
+      //         channel: "Matt D'Avella",
+      //         url: "https://www.youtube.com/watch?v=3siRFvX_-Pg",
+      //       },
+      //       {
+      //         title: "The Easiest Way to Double Your Productivity",
+      //         channel: "Thomas Frank",
+      //         url: "https://www.youtube.com/watch?v=c92hhEFCcGw",
+      //       },
+      //     ],
+      //   };
 
-        setTimeout(() => {
-          displayContent(demoData);
-          document.querySelector(".content-grid").style.display = "grid";
-          document.querySelector(".fetch-btn").disabled = false;
-          document.querySelector(".spinner").style.display = "none";
-          document.querySelector(".btn-text").textContent =
-            "Fetch Daily Recommendations";
-          document.querySelector(".loading-text").style.display = "none";
-        }, 2000);
-      }
+      //   setTimeout(() => {
+      //     displayContent(demoData);
+      //     document.querySelector(".content-grid").style.display = "grid";
+      //     document.querySelector(".fetch-btn").disabled = false;
+      //     document.querySelector(".spinner").style.display = "none";
+      //     document.querySelector(".btn-text").textContent =
+      //       "Fetch Daily Recommendations";
+      //     document.querySelector(".loading-text").style.display = "none";
+      //   }, 2000);
+      // }
 
       // Uncomment this line to test with demo data
       // Replace fetchContent function call with loadDemoData() for testing
