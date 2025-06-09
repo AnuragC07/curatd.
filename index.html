@@ -4,12 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Daily Productivity Content</title>
-    <!-- <link
-      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap"
-      rel="stylesheet"
-    /> -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -20,11 +16,10 @@
       }
 
       body {
-        /* font-family: "Crimson Text", serif; */
-        font-family: "Libre Baskerville", serif;
-        background: linear-gradient(135deg, #f5f0e8 0%, #e8ddd4 100%);
+        font-family: "Inter", sans-serif;
+        background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
         min-height: 100vh;
-        color: #3c2415;
+        color: #e5e5e5;
         line-height: 1.6;
       }
 
@@ -40,55 +35,74 @@
       }
 
       .title {
-        font-family: "Dancing Script", cursive;
         font-size: 3.5rem;
         font-weight: 700;
-        color: #5d4037;
+        background: linear-gradient(
+          135deg,
+          #ff6b9d 0%,
+          #c44cff 50%,
+          #8b5cf6 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
         margin-bottom: 1rem;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        letter-spacing: -0.02em;
       }
 
       .subtitle {
         font-size: 1.2rem;
-        color: #6d4c41;
-        font-style: italic;
+        color: #a1a1aa;
+        font-weight: 300;
         margin-bottom: 2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
       }
 
       .fetch-btn {
-        background: linear-gradient(45deg, #5d4037, #8d6e63);
-        color: #f5f0e8;
+        background: linear-gradient(
+          135deg,
+          #ff6b9d 0%,
+          #c44cff 50%,
+          #8b5cf6 100%
+        );
+        color: #ffffff;
         border: none;
         padding: 1rem 2rem;
         font-size: 1.1rem;
-        font-family: "Crimson Text", serif;
-        border-radius: 50px;
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        border-radius: 12px;
         cursor: pointer;
         transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(93, 64, 55, 0.3);
+        box-shadow: 0 4px 20px rgba(255, 107, 157, 0.3);
         position: relative;
         overflow: hidden;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
       }
 
       .fetch-btn:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(93, 64, 55, 0.4);
+        box-shadow: 0 8px 30px rgba(255, 107, 157, 0.4);
       }
 
       .fetch-btn:disabled {
         opacity: 0.7;
         cursor: not-allowed;
+        transform: none;
       }
 
       .spinner {
         display: none;
         width: 20px;
         height: 20px;
-        border: 2px solid #f5f0e8;
-        border-top: 2px solid transparent;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-top: 2px solid #ffffff;
         border-radius: 50%;
         animation: spin 1s linear infinite;
-        margin-right: 0.5rem;
       }
 
       @keyframes spin {
@@ -108,34 +122,56 @@
       }
 
       .content-section {
-        background: rgba(255, 255, 255, 0.6);
+        background: rgba(255, 255, 255, 0.05);
         padding: 2rem;
-        border-radius: 20px;
+        border-radius: 16px;
         backdrop-filter: blur(10px);
-        box-shadow: 0 8px 32px rgba(93, 64, 55, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .content-section:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 107, 157, 0.3);
       }
 
       .section-title {
-        font-family: "Dancing Script", cursive;
-        font-size: 2rem;
+        font-size: 1.5rem;
         font-weight: 600;
-        color: #5d4037;
+        background: linear-gradient(135deg, #ff6b9d 0%, #c44cff 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
         margin-bottom: 1.5rem;
         text-align: center;
       }
 
       .content-item {
-        background: rgba(245, 240, 232, 0.8);
+        background: rgba(255, 255, 255, 0.03);
         padding: 1.5rem;
         margin-bottom: 1rem;
-        border-radius: 15px;
-        border-left: 4px solid #8d6e63;
-        transition: transform 0.2s ease;
+        border-radius: 12px;
+        border-left: 3px solid transparent;
+        border-image: linear-gradient(135deg, #ff6b9d, #c44cff) 1;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .content-item::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 3px;
+        height: 100%;
+        background: linear-gradient(135deg, #ff6b9d 0%, #c44cff 100%);
       }
 
       .content-item:hover {
         transform: translateX(5px);
+        background: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 4px 20px rgba(255, 107, 157, 0.1);
       }
 
       .content-item:last-child {
@@ -144,51 +180,76 @@
 
       .item-title {
         font-size: 1.1rem;
-        font-weight: 600;
-        color: #3c2415;
+        font-weight: 500;
+        color: #f4f4f5;
         margin-bottom: 0.5rem;
         text-decoration: none;
+        display: block;
+        transition: color 0.2s ease;
       }
 
       .item-title:hover {
-        color: #5d4037;
+        color: #ff6b9d;
       }
 
       .item-creator {
         font-size: 0.9rem;
-        color: #6d4c41;
-        font-style: italic;
+        color: #a1a1aa;
+        font-weight: 300;
         margin-bottom: 0.5rem;
       }
 
       .item-link {
-        color: #8d6e63;
+        color: #c44cff;
         text-decoration: none;
         font-size: 0.9rem;
-        transition: color 0.2s ease;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
       }
 
       .item-link:hover {
-        color: #5d4037;
-        text-decoration: underline;
+        color: #ff6b9d;
+        text-decoration: none;
       }
 
       .loading-text {
         text-align: center;
-        font-style: italic;
-        color: #6d4c41;
+        font-weight: 300;
+        color: #a1a1aa;
         margin-top: 2rem;
         display: none;
       }
 
       .error-message {
-        background: rgba(211, 47, 47, 0.1);
-        color: #c62828;
+        background: rgba(239, 68, 68, 0.1);
+        color: #fca5a5;
         padding: 1rem;
-        border-radius: 10px;
+        border-radius: 12px;
         text-align: center;
         margin-top: 2rem;
         display: none;
+        border: 1px solid rgba(239, 68, 68, 0.2);
+      }
+
+      /* Scrollbar styling */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #1a1a1a;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, #ff6b9d, #c44cff);
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(135deg, #c44cff, #8b5cf6);
       }
 
       @media (max-width: 768px) {
@@ -203,6 +264,39 @@
         .container {
           padding: 1rem;
         }
+
+        .content-section {
+          padding: 1.5rem;
+        }
+      }
+
+      /* Subtle animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .content-item {
+        animation: fadeIn 0.5s ease forwards;
+      }
+
+      .content-item:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .content-item:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .content-item:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .content-item:nth-child(4) {
+        animation-delay: 0.4s;
       }
     </style>
   </head>
@@ -289,32 +383,34 @@
 
         // Display articles
         if (data.articles && data.articles.length > 0) {
-          data.articles.forEach((article) => {
+          data.articles.forEach((article, index) => {
             const articleElement = createContentItem(
               article.title,
               article.source || "Unknown Source",
               article.url
             );
+            articleElement.style.animationDelay = `${index * 0.1}s`;
             articlesContainer.appendChild(articleElement);
           });
         } else {
           articlesContainer.innerHTML =
-            '<p style="text-align: center; color: #6d4c41; font-style: italic;">No articles found today</p>';
+            '<p style="text-align: center; color: #a1a1aa; font-weight: 300;">No articles found today</p>';
         }
 
         // Display videos
         if (data.videos && data.videos.length > 0) {
-          data.videos.forEach((video) => {
+          data.videos.forEach((video, index) => {
             const videoElement = createContentItem(
               video.title,
               video.channel || "Unknown Channel",
               video.url
             );
+            videoElement.style.animationDelay = `${index * 0.1}s`;
             videosContainer.appendChild(videoElement);
           });
         } else {
           videosContainer.innerHTML =
-            '<p style="text-align: center; color: #6d4c41; font-style: italic;">No videos found today</p>';
+            '<p style="text-align: center; color: #a1a1aa; font-weight: 300;">No videos found today</p>';
         }
       }
 
@@ -330,49 +426,6 @@
 
         return item;
       }
-
-      // Demo data for testing (remove when backend is ready)
-      // function loadDemoData() {
-      //   const demoData = {
-      //     articles: [
-      //       {
-      //         title: "7 Habits to Stay Focused in a World Full of Distractions",
-      //         source: "Harvard Business Review",
-      //         url: "https://hbr.org/2025/02/7-habits-to-stay-focused-in-a-world-full-of-distractions",
-      //       },
-      //       {
-      //         title: "Don't Let Bad Time Management Undermine Your Leadership",
-      //         source: "Harvard Business Review",
-      //         url: "https://hbr.org/2025/02/dont-let-bad-time-management-undermine-your-leadership",
-      //       },
-      //     ],
-      //     videos: [
-      //       {
-      //         title: "I put 27 habits to the ultimate test",
-      //         channel: "Matt D'Avella",
-      //         url: "https://www.youtube.com/watch?v=3siRFvX_-Pg",
-      //       },
-      //       {
-      //         title: "The Easiest Way to Double Your Productivity",
-      //         channel: "Thomas Frank",
-      //         url: "https://www.youtube.com/watch?v=c92hhEFCcGw",
-      //       },
-      //     ],
-      //   };
-
-      //   setTimeout(() => {
-      //     displayContent(demoData);
-      //     document.querySelector(".content-grid").style.display = "grid";
-      //     document.querySelector(".fetch-btn").disabled = false;
-      //     document.querySelector(".spinner").style.display = "none";
-      //     document.querySelector(".btn-text").textContent =
-      //       "Fetch Daily Recommendations";
-      //     document.querySelector(".loading-text").style.display = "none";
-      //   }, 2000);
-      // }
-
-      // Uncomment this line to test with demo data
-      // Replace fetchContent function call with loadDemoData() for testing
     </script>
   </body>
 </html>
