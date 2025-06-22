@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 import os
 from main import ProductivityScraper
@@ -12,13 +12,31 @@ def home():
     return "Productivity Scraper API is running!"
 
 
-@app.route("/api/content")
-def get_content():
+@app.route("/api/content", methods=["POST"])
+def get_content_post():
     try:
+        data = request.get_json(force=True)
+        tags = data.get("tags", [])
         scraper = ProductivityScraper()
-        articles, videos = scraper.get_daily_content()
+        (
+            article_titles,
+            article_sources,
+            article_urls,
+            video_titles,
+            video_channels,
+            video_urls,
+        ) = scraper.get_recommendations_based_on_tags(tags)
 
-        return jsonify({"articles": articles, "videos": videos})
+        return jsonify(
+            {
+                "article_titles": article_titles,
+                "article_sources": article_sources,
+                "article_urls": article_urls,
+                "video_titles": video_titles,
+                "video_channels": video_channels,
+                "video_urls": video_urls,
+            }
+        )
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 

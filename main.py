@@ -538,6 +538,93 @@ class ProductivityScraper:
         )
         print("=" * 70)
 
+    def get_recommendations_based_on_tags(self, tags, article_count=5, video_count=5):
+        """
+        Takes a list of tags (user preferences) and returns recommended articles and videos.
+        Only include content that matches any of the tags in title, description, or tags.
+        Output: 4 lists - 2 for articles (title, source, url), 2 for videos (title, channel, url)
+        """
+        # Lowercase tags for matching
+        tags_lower = [t.lower() for t in tags if t.strip()]
+        if not tags_lower:
+            return [], [], [], []
+
+        # Scrape more content for better filtering
+        all_articles = []
+        sources = self.article_sources.copy()
+        random.shuffle(sources)
+        for source in sources:
+            articles = self.scrape_article_links(source)
+            all_articles.extend(articles)
+            if len(all_articles) >= article_count * 6:
+                break
+
+        # Filter articles by tags
+        filtered_articles = []
+        for article in all_articles:
+            title = article.get("title", "").lower()
+            # Try to get description if available (not always present)
+            desc = (
+                article.get("description", "").lower()
+                if "description" in article
+                else ""
+            )
+            if any(tag in title or tag in desc for tag in tags_lower):
+                filtered_articles.append(article)
+        # Remove duplicates and select
+        seen_urls = set()
+        unique_articles = []
+        for a in filtered_articles:
+            if a["url"] not in seen_urls:
+                unique_articles.append(a)
+                seen_urls.add(a["url"])
+        selected_articles = unique_articles[:article_count]
+
+        # Prepare article lists
+        article_titles = [a["title"] for a in selected_articles]
+        article_sources = [a["source"] for a in selected_articles]
+        article_urls = [a["url"] for a in selected_articles]
+
+        # Scrape videos
+        all_videos = []
+        channels = self.youtube_channels.copy()
+        random.shuffle(channels)
+        for channel in channels:
+            videos = self.get_youtube_videos(channel)
+            all_videos.extend(videos)
+            if len(all_videos) >= video_count * 6:
+                break
+
+        # Filter videos by tags
+        filtered_videos = []
+        for video in all_videos:
+            title = video.get("title", "").lower()
+            # yt_dlp does not provide description/tags in flat mode, so only use title
+            if any(tag in title for tag in tags_lower):
+                filtered_videos.append(video)
+        # Remove duplicates and select
+        seen_urls = set()
+        unique_videos = []
+        for v in filtered_videos:
+            if v["url"] not in seen_urls:
+                unique_videos.append(v)
+                seen_urls.add(v["url"])
+        selected_videos = unique_videos[:video_count]
+
+        # Prepare video lists
+        video_titles = [v["title"] for v in selected_videos]
+        video_channels = [v["channel"] for v in selected_videos]
+        video_urls = [v["url"] for v in selected_videos]
+
+        return (
+            article_titles,
+            article_sources,
+            article_urls,
+            video_titles,
+            video_channels,
+            video_urls,
+        )
+
 
 def main():
     """Main function to run the scraper"""
