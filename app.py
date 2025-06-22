@@ -71,7 +71,7 @@ def send_newsletter():
     payload = {
         "sender": {
             "name": "Bytecode Curator",
-            "email": "your_verified_sender@example.com",
+            "email": "anuragforwork0018@gmail.com",
         },
         "to": [{"email": email}],
         "subject": "🎯 Your Personalized Productivity Newsletter from Bytecode",
