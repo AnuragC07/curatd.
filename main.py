@@ -230,6 +230,8 @@ class ProductivityScraper:
             "stress",
             "anxiety",
         ]
+        # Product-oriented keywords to filter out
+        self.product_keywords = ["kindle", "windows", "macbook", "android", "ios", "os"]
 
     def get_random_headers(self):
         """Get randomized headers for scraping"""
@@ -538,7 +540,14 @@ class ProductivityScraper:
         )
         print("=" * 70)
 
-    def get_recommendations_based_on_tags(self, tags, article_count=5, video_count=5):
+    def _contains_product_keywords(self, text):
+        """Return True if text contains any product-oriented keywords."""
+        if not text:
+            return False
+        text_lower = text.lower()
+        return any(pk in text_lower for pk in self.product_keywords)
+
+    def get_recommendations_based_on_tags(self, tags, article_count=2, video_count=2):
         """
         Takes a list of tags (user preferences) and returns recommended articles and videos.
         Only include content that matches any of the tags in title, description, or tags.
@@ -563,13 +572,17 @@ class ProductivityScraper:
         filtered_articles = []
         for article in all_articles:
             title = article.get("title", "").lower()
-            # Try to get description if available (not always present)
             desc = (
                 article.get("description", "").lower()
                 if "description" in article
                 else ""
             )
-            if any(tag in title or tag in desc for tag in tags_lower):
+            # Filter by tags and remove product-oriented results
+            if (
+                any(tag in title or tag in desc for tag in tags_lower)
+                and not self._contains_product_keywords(title)
+                and not self._contains_product_keywords(desc)
+            ):
                 filtered_articles.append(article)
         # Remove duplicates and select
         seen_urls = set()
@@ -599,8 +612,10 @@ class ProductivityScraper:
         filtered_videos = []
         for video in all_videos:
             title = video.get("title", "").lower()
-            # yt_dlp does not provide description/tags in flat mode, so only use title
-            if any(tag in title for tag in tags_lower):
+            # Filter by tags and remove product-oriented results
+            if any(
+                tag in title for tag in tags_lower
+            ) and not self._contains_product_keywords(title):
                 filtered_videos.append(video)
         # Remove duplicates and select
         seen_urls = set()
